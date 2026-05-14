@@ -1,7 +1,6 @@
-import os
 import shutil
-import sys
 from pathlib import Path
+
 import piexif
 
 
@@ -18,14 +17,11 @@ def has_valid_gps_data(jpg_path):
 
         # Verify essential GPS fields exist (latitude and longitude)
         # GPS IFD tags: 2=latitude, 4=longitude
-        if (
+        return not (  # noqa: TRY300
             piexif.GPSIFD.GPSLatitude not in gps_data
             or piexif.GPSIFD.GPSLongitude not in gps_data
-        ):
-            return False
-
-        return True
-    except Exception as e:
+        )
+    except Exception as e:  # noqa: BLE001
         print(f'  Error reading EXIF from {jpg_path}: {e}')
         return False
 
@@ -69,20 +65,19 @@ def move_jpgs_without_gps(directory):
                 try:
                     shutil.move(str(jpg_file), str(no_gps_folder / jpg_file.name))
                     moved_count += 1
-                except Exception as e:
+                except Exception as e:  # noqa: BLE001
                     print(f'  Error moving {jpg_file.name}: {e}')
 
     print(
-        f'\nSummary: Moved {moved_count} files, skipped {skipped_count} files with GPS data.'
+        f'\nSummary: Moved {moved_count} files, skipped {skipped_count} files with GPS data.',
     )
 
 
 if __name__ == '__main__':
-    print('TODO')
-    sys.exit(1)
     # if len(sys.argv) < 2:
     #     print('Usage: python script.py <directory_path>')
     #     sys.exit(1)
     #
     # directory = sys.argv[1]
-    # move_jpgs_without_gps(directory)
+    directory = Path.home() / Path('programmieren/move_if_no_gps_data/jpgs/')
+    move_jpgs_without_gps(directory)

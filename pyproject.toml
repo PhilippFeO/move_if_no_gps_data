@@ -7,7 +7,9 @@ authors = [
     { name = "PhilippFeO", email = "125358469+PhilippFeO@users.noreply.github.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "piexif>=1.1.3",
+]
 
 [project.scripts]
 move-if-no-gps-data = "move_if_no_gps_data:main"
