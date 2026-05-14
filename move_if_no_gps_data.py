@@ -128,7 +128,7 @@ if __name__ == '__main__':
     directory = sys.argv[1]
     logger.info(
         {
-            'message': f'Move Fotos without GPS data in {directory=}',
+            'message': f'Move Fotos without GPS data within {directory!r}.',
             'directory': directory,
         },
     )
