@@ -1,0 +1,17 @@
+[project]
+name = "move-if-no-gps-data"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "PhilippFeO", email = "125358469+PhilippFeO@users.noreply.github.com" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+move-if-no-gps-data = "move_if_no_gps_data:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
