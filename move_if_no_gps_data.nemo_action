@@ -1,0 +1,14 @@
+[Nemo Action]
+Active=true
+Name=Fotos ohne GPS-Daten
+Comment=Verschiebe alle Fotos ohne GPS-Daten in eigenes Verzeichnis.
+Exec=bash -c 'source ~/programmieren/move_if_no_gps_data/.venv/bin/activate && python3 ~/programmieren/move_if_no_gps_data/move_if_no_gps_data.py %F'
+
+Icon-Name=org.openstreetmap.josm
+
+# Show only for a [s]ingle selection
+Selection=s
+# Show only for [dir]ectories
+Extensions=dir;
+Quote=Double
+Locations=~/Bilder/*;
