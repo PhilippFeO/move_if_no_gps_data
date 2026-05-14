@@ -12,22 +12,25 @@
 # ────────────────────────────────────────
 
 SRC_DIR=$(shell basename $(PWD))
+SCRIPT:=move_if_no_gps_data.py
 
-help: ## Show Help
-	grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+# ────────────────────────────────────────
 
+# Run application (use ARGS="..." to pass arguments)
 run: venv
-	. .venv/bin/activate && python3 src/$(SRC_DIR)/__main__.py 
+	python3 $(SCRIPT) $(ARGS)
+
 
 # Initialize a Python Repository using uv: https://docs.astral.sh/uv/
 init:
-	uv init --package
-	touch src/$(SRC_DIR)/__main__.py
+	uv init
+	mv main.py $(SCRIPT)
 	uv venv
+
 
 clean-logs:
 	cat /dev/null > .nemo_action.log.json
 
 
-# venv:
-# 	@[ -f .venv/bin/activate ] && source .venv/bin/activate
+venv:
+	[ -f .venv/bin/activate ] && source .venv/bin/activate
