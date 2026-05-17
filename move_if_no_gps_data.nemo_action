@@ -11,4 +11,4 @@ Selection=s
 # Show only for [dir]ectories
 Extensions=dir;
 Quote=Double
-Locations=~/Bilder/*;
+Locations=~/Bilder*;
